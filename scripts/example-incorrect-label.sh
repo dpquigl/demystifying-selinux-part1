@@ -15,18 +15,19 @@ ORIG_DIR=`pwd`
 trap read debug
 set -v
 
-
 # Administrator creates a file or extracts an archive to /tmp
-cd /tmp ; echo "Hello from www.example-labels.com" > index.html
+echo "Hello from www.example-labels.com" > ~/index.html
 
 # We display the label of index.html to see what it is.
-ls -Z index.html
+ls -Z ~/index.html
 
 # We move index.html into the site's DocumentRoot folder
-mv index.html /var/www/html
+mv ~/index.html /var/www/html
 
 # Attempt to open the page in firefox
 firefox http://www.example-labels.com > /dev/null 2>&1 &
+
+# Wait for firefox to start.
 
 # The display failed? Lets see why. Display the label on index.html again
 ls -Z /var/www/html/index.html
